@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import React = require("react");
 
 interface ButtonProps {
   children: ReactNode;
