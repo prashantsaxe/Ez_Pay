@@ -33,12 +33,12 @@ async function getOnRampTransactions() {
     }))
 }
 
-export default async function() {
+export default async function( ) {
     const balance = await getBalance();
     const transactions = await getOnRampTransactions();
 
     return <div className="w-screen">
-        <div className="text-5xl text-[#2531a0] pt-8 mb-8 font-bold text-center underline font-sans">
+        <div className="text-5xl text-[#2531a0] pt-8 mb-8 font-bold text-center  font-sans">
             Transfer
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 p-4">

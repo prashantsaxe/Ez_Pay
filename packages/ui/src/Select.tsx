@@ -1,4 +1,7 @@
 "use client"
+
+import React from "react";
+
 export const Select = ({ options, onSelect }: {
     onSelect: (value: string) => void;
     options: {

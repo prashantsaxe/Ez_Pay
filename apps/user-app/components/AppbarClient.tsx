@@ -8,7 +8,7 @@ export function AppbarClient() {
   const router = useRouter();
 
   return (
-   <div>
+   <div className="">
       <Appbar onSignin={signIn} onSignout={async () => {
         await signOut()
         router.push("/api/auth/signin")
