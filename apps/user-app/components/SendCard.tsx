@@ -11,7 +11,7 @@ export function SendCard() {
     const [number, setNumber] = useState("");
     const [amount, setAmount] = useState("");
 
-    return <div className=" flex justify-evenly bg-green-100">
+    return <div className=" flex justify-evenly bg-gradient-to-r from-green-400 via-teal-300 to-lime-300 ">
         <div className="flex justify-self-start">
             <Card title="Send">
                 <div className="min-w-96  h-72 justify-start">
@@ -40,7 +40,7 @@ export function SendCard() {
                 </div>
             </Card>
         </div>    
-        <div className="pl-5 flex justify-end   bg-green-100">
+        <div className="pl-5 flex justify-end  bg-teal-300 ">
             <Image
                 src="/p2p.jpg"  // Path to the image in the `public` directory
                 alt="Description of image"

@@ -1,21 +1,31 @@
 import express from "express";
 import db from "@repo/db/client";
-const app = express();
+import { z } from "zod";
 
-app.use(express.json())
+const app = express();
+app.use(express.json());
+
+const paymentInfoSchema = z.object({
+    token: z.string(),
+    userId: z.string(),// Assuming userId is received as a string
+    amount: z.string() // Assuming amount is a numeric string
+});
 
 app.post("/hdfcWebhook", async (req, res) => {
-    //TODO: Add zod validation here?
-    // check if this onramp txn is processing or not (if processign then ok else not)
-    //TODO: HDFC bank should ideally send us a secret so we know this is sent by them
-    const paymentInformation: {
-        token: string;
-        userId: string;
-        amount: string
-    } = {
-        token: req.body.token,
-        userId: req.body.user_identifier,
-        amount: req.body.amount
+   
+    const parseResult = paymentInfoSchema.safeParse(req.body);
+
+    if (!parseResult.success) {
+        return res.status(400).json({
+            message: "Invalid request data",
+            errors: parseResult.error.errors
+        });
+    }
+
+    const paymentInformation = {
+        token: parseResult.data.token,
+        userId: parseResult.data.userId,
+        amount: parseResult.data.amount
     };
 
     try {
@@ -26,7 +36,6 @@ app.post("/hdfcWebhook", async (req, res) => {
                 },
                 data: {
                     amount: {
-                        // You can also get this from your DB
                         increment: Number(paymentInformation.amount)
                     }
                 }
@@ -43,14 +52,15 @@ app.post("/hdfcWebhook", async (req, res) => {
 
         res.json({
             message: "Captured"
-        })
+        });
     } catch(e) {
-        console.error(e);
-        res.status(411).json({
+        console.error("Error during transaction:", e);
+        res.status(500).json({
             message: "Error while processing webhook"
-        })
+        });
     }
+});
 
-})
-
-app.listen(3004);
+app.listen(3003, () => {
+    console.log("Server running on port 3003");
+});

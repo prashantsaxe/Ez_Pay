@@ -6,7 +6,7 @@ export default function Layout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <div className="flex bg-green-100">
+    <div className="flex bg-gradient-to-r from-green-400 via-teal-300 to-lime-300 min-h-screen w-full">
         {/* <div className="w-72 border-r border-slate-300 min-h-screen mr-4 pt-28">
             <div>
                 <SidebarItem href={"/dashboard"} icon={<HomeIcon />} title="Home" />

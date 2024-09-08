@@ -17,7 +17,7 @@ export const Appbar = ({
     onSignout
 }: AppbarProps) => {
     return (
-        <div className="flex justify-between border-b px-4 border-slate-300 bg-green-500 shadow-xl p-3">
+        <div className="flex justify-between border-b px-4 border-slate-500 bg-gradient-to-r from-green-600 via-teal-400 to-lime-400  shadow-xl p-3">
             <div className="flex flex-col justify-center font-mono italic text-3xl font-bold tracking-wide text-zinc-100 shadow-5xl pl-5">
                 eZPay
             </div>

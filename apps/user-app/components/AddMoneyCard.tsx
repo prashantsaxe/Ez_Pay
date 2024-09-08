@@ -9,11 +9,14 @@ import { updateBalance } from "../app/lib/actions/updateBalance";
 
 const SUPPORTED_BANKS = [{
     name: "HDFC Bank",
-    redirectUrl: "https://netbanking.hdfcbank.com"
+    redirectUrl: "http://localhost:3001/transfer/hdfc"
 }, {
     name: "Axis Bank",
     redirectUrl: "https://www.axisbank.com/"
 }];
+
+
+
 
 export const AddMoney = () => {
     const [redirectUrl, setRedirectUrl] = useState(SUPPORTED_BANKS[0]?.redirectUrl);
